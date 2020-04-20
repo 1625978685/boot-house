@@ -1,6 +1,5 @@
 package com.etoak.config;
 
-import io.swagger.annotations.ApiOperation;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import springfox.documentation.builders.ApiInfoBuilder;
@@ -16,19 +15,21 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 public class SwaggerConfig {
 
     @Bean
-    public Docket docket(){
+    public Docket docket() {
+
+        // ApiInfo
         ApiInfo apiInfo = new ApiInfoBuilder()
-                .title("使用Swagger创建Rest风格的接口文档")
-                .description("使用Swagger创建Rest风格的接口文档")
+                .title("使用Swagger创建Rest风格接口文档")
+                .description("使用Swagger创建Rest风格接口文档")
                 .termsOfServiceUrl("http://www.etoak.com")
                 .version("1.0")
                 .build();
 
         return new Docket(DocumentationType.SWAGGER_2)
-                .apiInfo(apiInfo)
+                .apiInfo(apiInfo) // 文档描述信息
                 .select()
                 .paths(PathSelectors.any())
-                .apis(RequestHandlerSelectors.basePackage("com,etoak.controller"))
+                .apis(RequestHandlerSelectors.basePackage("com.etoak.controller")) // 为哪个包创建api文档
                 .build();
     }
 
