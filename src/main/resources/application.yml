@@ -10,4 +10,9 @@ spring:
     password: wang
     hikari:
       maximum-pool-size: 50
+mybatis:
+  mapper-locations: classpath:mappers/*.xml
+  type-aliases-package: com.etoak.bean
+pagehelper:
+  reasonable: true
 
