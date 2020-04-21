@@ -29,7 +29,11 @@ public class SwaggerConfig {
                 .apiInfo(apiInfo) // 文档描述信息
                 .select()
                 .paths(PathSelectors.any())
+<<<<<<< HEAD
                 .apis(RequestHandlerSelectors.basePackage("com.etoak.controller")) // 为哪个包创建api文档
+=======
+                .apis(RequestHandlerSelectors.basePackage("com.etoak.controller"))
+>>>>>>> dev
                 .build();
     }
 
