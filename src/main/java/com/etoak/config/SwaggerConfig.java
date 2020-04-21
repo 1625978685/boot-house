@@ -28,7 +28,7 @@ public class SwaggerConfig {
                 .apiInfo(apiInfo)
                 .select()
                 .paths(PathSelectors.any())
-                .apis(RequestHandlerSelectors.basePackage("com,etoak.controller"))
+                .apis(RequestHandlerSelectors.basePackage("com.etoak.controller"))
                 .build();
     }
 
