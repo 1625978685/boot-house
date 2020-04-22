@@ -47,7 +47,7 @@
         <div class="form-group">
             <label for="rent_mode" class="col-sm-2 control-label">租赁方式</label>
             <div class="col-sm-2 input-group">
-                <select class="form-control" name="rent_mode" id="rent_mode">
+                <select class="form-control" name="rentMode" id="rent_mode">
                     <option value="">==请选择==</option>
                 </select>
             </div>
@@ -65,7 +65,7 @@
         <div class="form-group">
             <label for="house_type" class="col-sm-2 control-label">户型</label>
             <div class="col-sm-2 input-group">
-                <select class="form-control" name="house_type" id="house_type" placeholder="请输入户型">
+                <select class="form-control" name="houseType" id="house_type" placeholder="请输入户型">
                     <option value="">==请选择==</option>
                 </select>
             </div>
@@ -88,7 +88,7 @@
         <div class="form-group">
             <label for="pic" class="col-sm-2 control-label">房屋图片</label>
             <div class="col-sm-2 input-group">
-                <input type="file" name="pic" id="pic">
+                <input type="file" name="file" id="pic">
             </div>
         </div>
         <!--添加按钮-->
@@ -118,7 +118,7 @@
                 //点击查询  先清空市和区县
                 $("#city").html(emptyOption);
                 $("#area").html(emptyOption);
-                if(this.value){
+                if(this.value){  //不为 "" 或者不为  undefined
                     House.queryArea('city',this.value);
                 }
             });
@@ -202,6 +202,16 @@
 
                     rules: {
                         province: "required",
+                        city: "required",
+                        area: "required",
+                        rentMode: "required",
+                        orientation: "required",
+                        houseType: "required",
+                        rental: {
+                            required: true,
+                            positiveInt: true,
+                            max: 10000
+                        },
                         address: {
                             required: true,
                             maxlength: 10
@@ -209,12 +219,32 @@
                     },
                     messages: {
                         province: "必填项",
+                        city: "必填项",
+                        area: "必填项",
+                        rentMode: "必填项",
+                        orientation: "必填项",
+                        houseType: "必填项",
+                        rental: {
+                            required: "必填项",
+                            positiveInt: "必须是大于0的正整数",
+                            max: "最大10万"
+                        },
                         address: {
                             required: "必填项",
                             maxlength: "10个字符以内"
                         },
                     }
                 });
+
+                //自定义校验规则
+                $.validator.addMethod('positiveInt',function (value,element) {
+                    let reg = /^\+?[1-9]\d*$/;
+                    return this.optional(element) || (reg.test(value));
+                },'必须是大于0的正整数');
+
+
+
+
             }
 
 
