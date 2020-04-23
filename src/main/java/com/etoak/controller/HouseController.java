@@ -84,7 +84,7 @@ public class HouseController {
 
     //添加房源信息    第二种方法   在这暂时无用
     @PostMapping("/add2")
-    public String add2(@RequestParam("file")MultipartFile file,
+    public String add2(@RequestParam("file") MultipartFile file,
                       @Valid House house,
                       BindingResult bindingResult) throws IOException, IllegalStateException {
 
@@ -135,13 +135,23 @@ public class HouseController {
     @ResponseBody
     public Page<HouseVo> queryList(@RequestParam(required = false,defaultValue = "1") int pageNum,
                                    @RequestParam(required = false,defaultValue = "10") int pageSize,
-                                   HouseVo houseVo){
+                                   HouseVo houseVo,
+                                   @RequestParam(value = "rentalList[]",required = false) String[] rentalList){
 
         log.info("pageNum:{}, pageSize:{},houseVo:{}",pageNum,pageSize,houseVo);
-        return houseService.queryList(pageNum,pageSize,houseVo);
+        return houseService.queryList(pageNum,pageSize,houseVo,rentalList);
 
     }
 
+
+    /**
+     * 跳转到列表页面
+     * @return
+     */
+    @GetMapping("/toList")
+    public String toList(){
+        return "house/list";
+    }
 
 
 
