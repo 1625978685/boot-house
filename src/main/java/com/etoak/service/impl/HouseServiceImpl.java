@@ -63,6 +63,21 @@ public class HouseServiceImpl implements HouseService {
 
     }
 
+    @Override
+    public int updateHouse(House house) {
+
+        if(house.getCity() != null){
+            Area area = areaMapper.queryById(house.getArea());
+            house.setAreaName(area.getName());
+        }
+
+        return houseMapper.updateHouse(house);
+    }
+
+
+
+
+    //封装处理租金的方法
     private void handleRental(HouseVo houseVo, String[] rentalList) {
         if(ArrayUtils.isNotEmpty(rentalList)){
             List<Map<String, Integer>> rentalMapList = new ArrayList<>();
