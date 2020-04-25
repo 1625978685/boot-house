@@ -162,6 +162,14 @@ public class HouseController {
     }
 
 
+    @DeleteMapping("/{id}")
+    public String deleteHouse(@PathVariable("id") int id){
+        log.info("delete id: {}",id);
+        houseService.deleteById(id);
+        return "redirect:/house/toList";
+    }
+
+
 
 
 
