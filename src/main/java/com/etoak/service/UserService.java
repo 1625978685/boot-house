@@ -7,4 +7,6 @@ public interface UserService {
 
     int addUser(User user);
 
+    User queryByName(String name);
+
 }

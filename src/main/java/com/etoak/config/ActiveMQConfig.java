@@ -11,7 +11,7 @@ import javax.jms.DeliveryMode;
 import javax.jms.Session;
 
 
-@Configuration
+//  @Configuration
 public class ActiveMQConfig {
 
     @Bean
